@@ -5,6 +5,7 @@ import pandas as pd
 import requests
 import math
 import os
+import json
 
 # FUNCTIONS
 
@@ -89,3 +90,5 @@ def get_german_power_df():
         print(f'csv file not found; data read from {url}')
     
     return df
+
+
