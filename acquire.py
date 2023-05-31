@@ -9,13 +9,14 @@ import json
 
 # FUNCTIONS
 
-# defining a function to get Star Wars data from the Star Wars API or a csv file
 def get_swapi_df(entity='people'):
     """
-    This function will accept the entity of a Star Wars API (swapi) URI
+    This function will accept the entity of a Star Wars API URI
     - default entity = 'people'
     - other options: 'planets', 'films', 'starships', etc.
-    - requests json files for all pages for the entity requested utilizing swapi
+    - requests json files for all pages for the entity requested utilizing swapi,
+      and writes data to a local csv
+    - OR if csv already exists, reads in data from local csv
     - returns a dataframe of all entities requested
     """
     # set filename for csv file to read or to write later after pulling data from Star Wars API
@@ -44,7 +45,7 @@ def get_swapi_df(entity='people'):
         entity_list = []
         entity_list = entity_list + data['results']
 
-        # set num_pages to be number of pages we need to ask for (total / num results per page)
+        # set num_pages to be number of pages we need to ask for
         num_pages = math.ceil(data['count'] / len(data['results']))
 
         # make a loop to get all the pages worth of data
@@ -65,6 +66,7 @@ def get_swapi_df(entity='people'):
         
         print (f'csv file not found, data read from {entity_uri}, csv created')
         return entity_df
+
 
 # defining a function to read german power data
 def get_german_power_df():
