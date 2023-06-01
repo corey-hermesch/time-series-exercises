@@ -69,19 +69,18 @@ def get_swapi_df(entity='people'):
 
 
 # defining a function to read german power data
-def get_german_power_df():
+def get_german_power_df(filename='opsd_germany_daily.csv'):
     """
     This function will
+    - accept a filename of a local csv (default 'opsd_germany_daily.csv')
     - read in data to a dataframe from a local csv OR from 
       https://raw.githubusercontent.com/jenfly/opsd/master/opsd_germany_daily.csv
     - return the dataframe
     """
-    # set filename for csv file to read or to write later after pulling data from the web
-    filename = 'opsd_germany_daily.csv'
     
     # if filename exists, read from the csv file
     if os.path.isfile(filename):
-        df = pd.read_csv(filename)
+        df = pd.read_csv(filename, index_col=0)
         print ("csv file found and read")
     
     # else get data from web
